@@ -1,9 +1,6 @@
 package com.globomantics.inventorymanager.service;
 
 import com.github.tomakehurst.wiremock.WireMockServer;
-
-import static com.github.tomakehurst.wiremock.client.WireMock.*;
-
 import com.globomantics.inventorymanager.model.InventoryRecord;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
@@ -13,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.TestPropertySource;
 
+import java.util.List;
 import java.util.Optional;
 
 @SpringBootTest
@@ -59,5 +57,12 @@ class InventoryServiceMappingTest {
 
         // Validate the contents of the response
         Assertions.assertEquals(495, record.get().getQuantity().intValue(), "The quantity should be 495");
+    }
+
+    @Test
+    void testGetInventorRecordListSuccess() {
+        Optional<List<InventoryRecord>> list = service.getInventoryRecordList();
+
+        Assertions.assertEquals(2, list.get().size());
     }
 }

@@ -1,0 +1,14 @@
+[
+  {
+    "productId": 1,
+    "quantity": 500,
+    "productName": "Super Great Product 1",
+    "productCategory": "Great Products 1"
+  },
+  {
+    "productId": 2,
+    "quantity": 1000,
+    "productName": "Super Great Product 2",
+    "productCategory": "Great Products 2"
+  }
+]
