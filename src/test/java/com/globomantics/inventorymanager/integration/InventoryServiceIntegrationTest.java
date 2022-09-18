@@ -21,8 +21,12 @@ import static org.hamcrest.Matchers.is;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 
+/**
+ * 对于Controller，Service，Repository或者调用三方的服务
+ * 中间调用过程都不需要mock
+ * 只是在调用初始和调用结束需要mock
+ */
 @ExtendWith(SpringExtension.class)
 @SpringBootTest
 @TestPropertySource(locations = "classpath:test.properties")
@@ -82,8 +86,8 @@ class InventoryServiceIntegrationTest {
     void testCreatePurchaseRecord() throws Exception {
         // Execute the POST request
         mockMvc.perform(post("/inventory/purchase-record")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(asJsonString(new PurchaseRecord(1, 5))))
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(asJsonString(new PurchaseRecord(1, 5))))
 
                 // Validate the response code and content type
                 .andExpect(status().isOk())
